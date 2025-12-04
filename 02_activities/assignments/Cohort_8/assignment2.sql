@@ -39,10 +39,8 @@ HINT: One of these approaches uses ROW_NUMBER() and one uses DENSE_RANK(). */
 	SELECT customer_id 
 	, market_date 
 	, row_number() OVER (PARTITION BY customer_id ORDER BY market_date) as Market_visit
-	FROM customer_purchases
-	GROUP BY customer_id, market_date; -- count each day as one row instead of counting each visit within
-
-	
+	FROM customer_purchases;
+	--GROUP BY customer_id, market_date; --  removed group by as advised by LS
 
 /* 2. Reverse the numbering of the query from a part so each customer’s most recent visit is labeled 1, 
 then write another query that uses this one as a subquery (or temp table) and filters the results to 
